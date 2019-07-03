@@ -7,6 +7,17 @@ module Beaker
         done = false
         until done or timeout < Time.now do
           done = block.call
+          sleep 1 # do not peg CPU if &block took less than 1 second
+        end
+        return done
+      end
+
+      def repeat_for_and_wait seconds, wait, &block
+        timeout = Time.now + seconds
+        done = false
+        until done or timeout < Time.now do
+          done = block.call
+          sleep wait unless done
         end
         return done
       end
