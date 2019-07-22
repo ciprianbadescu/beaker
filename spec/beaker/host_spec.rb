@@ -827,9 +827,9 @@ module Beaker
 
     describe "#down?" do
 
-      it "repeats 11 times & fails if ping never returns false" do
+      it "repeats 12 times & fails if ping never returns false" do
         allow(host).to receive(:sleep)
-        expect(host).to receive(:ping?).exactly(11).times.and_return(true)
+        expect(host).to receive(:ping?).exactly(12).times.and_return(true)
         expect {
           host.down?
         }.to raise_error(Beaker::Host::RebootFailure, /failed to go down/)
